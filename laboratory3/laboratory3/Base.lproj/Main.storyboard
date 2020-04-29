@@ -10,7 +10,7 @@
         <!--Movies View Controller-->
         <scene sceneID="arp-e7-izc">
             <objects>
-                <tableViewController id="OwA-sE-Wsi" customClass="MoviesViewController" customModule="laboratory3" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="OwA-sE-Wsi" customClass="MoviesViewController" customModule="laboratory3" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RzX-BT-MgD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,11 +63,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Eoj-yv-LMq">
                             <connections>
                                 <action selector="addMovie:" destination="OwA-sE-Wsi" id="hMU-ar-OcK"/>
+                                <segue destination="S6H-sM-8Gg" kind="show" identifier="newMovie" id="EWd-8h-CRn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFt-5b-ios" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Xf2-UO-5uQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="957.97101449275374" y="20.758928571428569"/>
         </scene>
@@ -170,15 +172,21 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tjz-MA-LPC">
                                                         <rect key="frame" x="0.0" y="349" width="404" height="30"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrw-PO-ydI">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrw-PO-ydI">
                                                                 <rect key="frame" x="0.0" y="0.0" width="356" height="30"/>
-                                                                <state key="normal" title="Save changes"/>
+                                                                <state key="normal" title="Save Film"/>
+                                                                <connections>
+                                                                    <segue destination="Xf2-UO-5uQ" kind="unwind" identifier="saveMovie" unwindAction="movieViewDoneWithSegue:" id="yVH-dU-H1b"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTt-Uk-Z5I">
                                                                 <rect key="frame" x="356" y="0.0" width="48" height="30"/>
                                                                 <state key="normal" title="Cancel">
                                                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <segue destination="Xf2-UO-5uQ" kind="unwind" identifier="cancelMovie" unwindAction="movieViewCancelWithSegue:" id="Uj1-oD-Q4V"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -237,4 +245,7 @@
             <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="EWd-8h-CRn"/>
+    </inferredMetricsTieBreakers>
 </document>

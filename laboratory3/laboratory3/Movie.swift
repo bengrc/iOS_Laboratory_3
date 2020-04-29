@@ -2,7 +2,7 @@
 //  Movie.swift
 //  laboratory3
 //
-//  Created by Benjamin on 28/04/2020.
+//  Created by Benjamin on 24/04/2020.
 //  Copyright © 2020 Benjamin. All rights reserved.
 //
 
@@ -25,7 +25,6 @@ class Movie: NSObject {
         self.dateCreated = Date()
         super.init()
     }
-    
 
     convenience init(random: Bool = false) {
         let dateCreated = Date()
