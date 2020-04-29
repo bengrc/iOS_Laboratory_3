@@ -11,10 +11,10 @@ import UIKit
 class MoviesViewController: UITableViewController {
     var moviesStore: MoviesStore!
     
-    
     override func viewDidLoad() {
-          super.viewDidLoad()
-          // Do any additional setup after loading the view.
+        super.viewDidLoad()
+        navigationItem.title = "Film Database"
+        // Do any additional setup after loading the view.
     }
 
     override func tableView(_ tableView: UITableView , numberOfRowsInSection section: Int) -> Int {
@@ -29,7 +29,7 @@ class MoviesViewController: UITableViewController {
         // will appear in on the tableview
         let movie : Movie = moviesStore.allMovies[indexPath.row]
         cell.textLabel?.text = movie.title
-        cell.detailTextLabel?.text = movie.director
+        cell.detailTextLabel?.text = movie.director + " (rating: " + String(movie.rating) + " )"
         return cell
     }
     
@@ -37,8 +37,8 @@ class MoviesViewController: UITableViewController {
         // If the table view is asking to commit a delete command...
         if editingStyle == .delete {
             let movie = moviesStore.allMovies[indexPath.row]
-            let title = "Delete \(movie.title)?"
-            let message = "Are you sure you want to delete this movie?"
+            let title = "Delete \(movie.title) (directed by \(movie.director))?"
+            let message = "Are you sure you want to delete this film?"
             let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             ac.addAction(cancelAction)
@@ -76,8 +76,12 @@ class MoviesViewController: UITableViewController {
            }
        }
   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
-    @IBAction func toggleEditingMode(_ sender: UIButton) { // If you are currently in editing mode...
+    @IBAction func toggleEditingMode(_ sender: UIBarButtonItem) { // If you are currently in editing mode...
         if isEditing {
             // Change text of button to inform user of state sender.setTitle("Edit library", for: .normal)
             // Turn off editing mode
@@ -89,7 +93,8 @@ class MoviesViewController: UITableViewController {
         }
     }
 
-    @IBAction func addMovie(_ sender: UIButton) {
+    @IBAction func addMovie(_ sender: UIBarButtonItem) {
+        print("addmovie")
         // Create a new book and add it to the store
         let newMovie = moviesStore.createMovie()
         // Figure out where that item is in the array

@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //guard let _ = (scene as? UIWindowScene) else { return }
         let moviesStore = MoviesStore()
         // Access the ItemsViewController and set its book store
-        let moviesViewController = window!.rootViewController as! MoviesViewController
+        let navController = window!.rootViewController as! UINavigationController
+        let moviesViewController = navController.topViewController as! MoviesViewController
         moviesViewController.moviesStore = moviesStore
     }
 
